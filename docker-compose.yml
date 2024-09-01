@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  django:
+    build:
+      context: ./django_service
+    working_dir: /django_service
+    volumes:
+      - ./django_service:/django_service
+#    command: sh -c "gunicorn --bind 0.0.0.0:8000 --workers 3 django_service.wsgi:application"
+    command: sh -c "python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "80:8000"
